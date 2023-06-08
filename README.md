@@ -3,7 +3,7 @@
 - K8s cluster: minikube
 - Container registry: Docker Hub
 
-# Overview
+# Setup
 
 To create and deploy a "Hello World" Express.js app to Kubernetes (k8s), you'll need to follow a few steps. Here's a high-level overview of the process:
 
@@ -14,47 +14,10 @@ To create and deploy a "Hello World" Express.js app to Kubernetes (k8s), you'll 
 2. Create an Express.js app:
    - Initialize a new Node.js project: Run `npm init` in a new directory and follow the prompts.
    - Install Express.js as a dependency: Run `npm install express`.
-   - Create an `index.js` file with the following code:
-
-```javascript
-const express = require('express');
-const app = express();
-const port = 3000;
-
-app.get('/', (req, res) => {
-  res.send('Hello, World!');
-});
-
-app.listen(port, () => {
-  console.log(`App listening at http://localhost:${port}`);
-});
-```
+   - Create an `index.js` file.
 
 3. Dockerize the Express.js app:
-   - Create a `Dockerfile` in the project directory with the following content:
-
-```dockerfile
-# Use the official Node.js runtime as the base image
-FROM node:14
-
-# Set the working directory in the container
-WORKDIR /app
-
-# Copy package.json and package-lock.json to the container
-COPY package*.json ./
-
-# Install app dependencies
-RUN npm install
-
-# Copy the rest of the app source code to the container
-COPY . .
-
-# Expose the port on which the app will run
-EXPOSE 3000
-
-# Define the command to run the app when the container starts
-CMD [ "node", "index.js" ]
-```
+   - Create a `Dockerfile` file.
 
 4. Build and push the Docker image:
    - `cd k8s-express-hello-world` (innermost directory)
@@ -73,9 +36,11 @@ CMD [ "node", "index.js" ]
 7. Deploy the app to Kubernetes:
    - Apply the deployment and service files: Run `kubectl apply -f deployment.yaml` and `kubectl apply -f service.yaml`.
 
-8. Verify the deployment:
+# Run
+
+1. Verify the deployment:
    - Run `kubectl get deployments` to check the status of the deployment.
    - Run `kubectl get services` to get the external IP address of the service.
 
-9. Access deployed application:
+2. Access deployed application:
    - Run `minikube service k8s-express-hello-world-service` 🎉
