@@ -1,3 +1,10 @@
+# Components
+
+- K8s cluster: minikube
+- Container registry: Docker Hub
+
+# Overview
+
 To create and deploy a "Hello World" Express.js app to Kubernetes (k8s), you'll need to follow a few steps. Here's a high-level overview of the process:
 
 1. Set up your development environment:
