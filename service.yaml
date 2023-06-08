@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8s-express-hello-world-service
+spec:
+  selector:
+    app: k8s-express-hello-world
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: NodePort
