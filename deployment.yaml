@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: k8s-express-hello-world-deployment
+  labels:
+    app: k8s-express-hello-world
 spec:
   replicas: 1
   selector:
